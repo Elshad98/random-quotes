@@ -13,3 +13,11 @@ Install dependencies. Make sure you already have nodejs & npm installed in your 
 ```
 $ npm install
 ```  
+Run it
+```
+$ npm start
+```  
+To build the app for production, run the following command  
+```
+$ npm run build
+```  
