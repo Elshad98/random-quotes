@@ -11,6 +11,11 @@ class App extends React.Component {
             icons: this.props.icons
         };
     }
+
+    componentDidMount() {
+               
+    }
+
     render() {
         return (
             <main className="quote-box">
