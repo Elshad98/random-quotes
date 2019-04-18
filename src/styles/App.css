@@ -1,5 +1,5 @@
 .quote-box {
-display: block;
+display: table;
 background: #fff;
 width: 500px;
 margin: 10% auto auto auto;
@@ -26,12 +26,26 @@ text-align: right;
 display: block;
 margin-top: 30px;
 }
-.buttons a {
+.icon {
+float: left;
+padding: 0px;
+padding-top: 8px;
 text-align: center;
 font-size: 1.2em;
-margin-right: 5px;
-padding: 8px 10px;
+margin-right: 7px;
+height: 39px;
+width: 42px;
 border-radius: 5px;
 color: #fff;
+background: #7189D7;
+}
+.new-quote {
+padding: 11px 18px;
+border-radius: 5px;
+font-size: 15px;
+color: #fff;
+border: none;
+font-weight: 500;
+float: right;
 background: #7189D7;
 }
