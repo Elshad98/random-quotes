@@ -8,6 +8,11 @@
 # testing
 /coverage
 
+# Editor files
+.vs/
+.idea
+*.sublime*
+
 # production
 /build
 
