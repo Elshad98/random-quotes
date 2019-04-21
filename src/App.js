@@ -28,11 +28,8 @@ class App extends React.Component {
     }
 
     handleSuccess(data) {
-        const index = this.getRandom(data);
         this.setState({
-            quotes: data,
-            quoteText: data[index].quoteText,
-            quoteAuthor: data[index].quoteAuthor
+            quotes: data
         });
     }
 

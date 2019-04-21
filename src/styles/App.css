@@ -39,6 +39,9 @@ border-radius: 5px;
 color: #fff;
 background: #7189D7;
 }
+.icon:hover {
+opacity: .8;
+}
 .new-quote {
 padding: 11px 18px;
 border-radius: 5px;
@@ -49,4 +52,7 @@ font-family: 'Roboto', sans-serif;
 font-weight: 500;
 float: right;
 background: #7189D7;
+}
+.new-quote:hover {
+opacity: .8;
 }
