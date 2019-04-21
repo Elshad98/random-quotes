@@ -1,12 +1,10 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Link from './components/Link';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             icons: this.props.icons,
             quotes: [],
@@ -14,7 +12,6 @@ class App extends React.Component {
             quoteAuthor: this.props.author,
             error: false
         };
-
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -75,26 +72,26 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-               
+
     }
 
     render() {
         return (
             <main className="quote-box">
-                <ReactCSSTransitionGroup className="quote-text" component="div" transitionName="slide" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                <div className="quote-text">
                     <i className="fa fa-quote-left" aria-hidden="true"></i>
                     <span>{this.state.quoteText}</span>
-                </ReactCSSTransitionGroup>
+                </div>
                 <div className="quote-author">- {this.state.quoteAuthor}</div>
                 <div className="buttons">
-                    {this.props.icons.map((icon) => {
-                        return <Link
+                    {this.props.icons.map((icon) => (
+                        <Link
                                     key={icon.id}
                                     id={icon.id}
                                     href={icon.href}
                                     className={icon.iconName}
                                 />
-                    })
+                    ))
                     }
                     <button href="#" className="new-quote" onClick={this.handleClick}>New quote</button>
                 </div>
