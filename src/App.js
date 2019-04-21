@@ -43,6 +43,7 @@ class App extends React.Component {
 
     componentWillMount() {
         const xhr = new XMLHttpRequest();
+        const URL = 'http://www.mocky.io/v2/5cbc3d51320000d90c80d836';
         xhr.responseType = 'json';
         xhr.addEventListener('load', () => {
             switch (xhr.status) {
@@ -59,17 +60,17 @@ class App extends React.Component {
                     this.handleError('Произошла внутренняя ошибка сервера');
                     break;
                 default:
-                    this.handleError('Произошла ошибка сервера: ' + xhr.status + ' ' + xhr.statusText);
+                    this.handleError(`Произошла ошибка сервера: ${xhr.status} ${xhr.statusText}`);
             }
         });
         xhr.addEventListener('error', () => {
             this.handleError('Произошла ошибка соединения');
         });
         xhr.addEventListener('timeout', () => {
-            this.handleError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+            this.handleError(`Запрос не успел выполниться за ${xhr.timeout} мс`);
         });
         xhr.timeout = 10000; // 10 seconds
-        xhr.open('GET', 'http://www.mocky.io/v2/5cbc3d51320000d90c80d836', true);
+        xhr.open('GET', URL, true);
         xhr.send();
     }
 
