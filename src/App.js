@@ -10,8 +10,8 @@ class App extends React.Component {
         this.state = {
             icons: this.props.icons,
             quotes: [],
-            quoteText: '',
-            quoteAuthor: '',
+            quoteText: this.props.text,
+            quoteAuthor: this.props.author,
             error: false
         };
     }
@@ -65,9 +65,9 @@ class App extends React.Component {
             <main className="quote-box">
                 <div className="quote-text">
                     <i className="fa fa-quote-left" aria-hidden="true"></i>
-                    <span>Hello</span>
+                    <span>{this.state.quoteText}</span>
                 </div>
-                <div className="quote-author">- Albert Einstein</div>
+                <div className="quote-author">- {this.state.quoteAuthor}</div>
                 <div className="buttons">
                     {this.props.icons.map((icon) => {
                         return <Link
@@ -85,10 +85,17 @@ class App extends React.Component {
 }
 
 App.propTypes = {
+    text: PropTypes.string,
+    author: PropTypes.string,
     icons: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         iconName: PropTypes.string.isRequired
     }))
+};
+
+App.defaultProps = {
+    text: 'Having nothing, nothing can he lose.',
+    author: 'William Shakespeare'
 };
 
 export default App;
