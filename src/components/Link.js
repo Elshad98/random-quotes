@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Link(props){
 	return (
-		 <a href="www.exaple.com" className="icon" target="_blank">
+        <a href={props.href} rel="noopener noreferrer" className="icon" target="_blank">
             <i className={props.className} aria-hidden="true"></i>
         </a>
 	);

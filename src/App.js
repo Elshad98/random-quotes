@@ -22,13 +22,13 @@ class App extends React.Component {
         console.error(error);
     }
 
-    getRandomElement(array) {
+    getRandom(array) {
         const randomElementIndex = Math.floor(Math.random() * array.length);
         return randomElementIndex;
     }
 
     handleSuccess(data) {
-        const index = this.getRandomElement(data);
+        const index = this.getRandom(data);
         this.setState({
             quotes: data,
             quoteText: data[index].quoteText,
@@ -39,8 +39,8 @@ class App extends React.Component {
     handleClick() {
         const quotes = this.state.quotes;
         this.setState({
-            quoteText: quotes[this.getRandomElement(quotes)].quoteText,
-            quoteAuthor: quotes[this.getRandomElement(quotes)].quoteAuthor
+            quoteText: quotes[this.getRandom(quotes)].quoteText,
+            quoteAuthor: quotes[this.getRandom(quotes)].quoteAuthor
         });
     }
 
@@ -72,7 +72,7 @@ class App extends React.Component {
             this.handleError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
         });
         xhr.timeout = 10000; // 10 seconds
-        xhr.open('GET', 'http://www.mocky.io/v2/5cbc08053200007b0680d7cb', true);
+        xhr.open('GET', 'http://www.mocky.io/v2/5cbc3d51320000d90c80d836', true);
         xhr.send();
     }
 
@@ -93,6 +93,7 @@ class App extends React.Component {
                         return <Link
                                     key={icon.id}
                                     id={icon.id}
+                                    href={icon.href}
                                     className={icon.iconName}
                                 />
                     })
