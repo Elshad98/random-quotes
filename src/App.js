@@ -8,8 +8,23 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            icons: this.props.icons
+            icons: this.props.icons,
+            quotes: [],
+            quoteText: '',
+            quoteAuthor: ''
         };
+    }
+
+    componentWillMount() {
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'json';
+        xhr.addEventListener('load', () => {
+            if (xhr.status === 200) {
+                console.log(xhr.response);
+            }
+        });
+        xhr.open('GET', 'http://www.mocky.io/v2/5cbc08053200007b0680d7cb', true);
+        xhr.send();
     }
 
     componentDidMount() {
