@@ -20,14 +20,28 @@ class App extends React.Component {
         console.error(error);
     }
 
+    getRandomElement(array) {
+        const randomElementIndex = Math.floor(Math.random() * array.length);
+        return randomElementIndex;
+    }
+
+    handleSuccess(data) {
+        const index = this.getRandomElement(data);
+        this.setState({
+            quoteText: data[index].quoteText,
+            quoteAuthor: data[index].quoteAuthor
+        });
+    }
+
     componentWillMount() {
         const xhr = new XMLHttpRequest();
+
         xhr.responseType = 'json';
 
         xhr.addEventListener('load', () => {
             switch (xhr.status) {
                 case 200:
-                    console.log(xhr.response);
+                    this.handleSuccess(xhr.response);
                     break;
                 case 400:
                     this.handleError('Произошла ошибка сервера: неверный запрос');
