@@ -14,6 +14,8 @@ class App extends React.Component {
             quoteAuthor: this.props.author,
             error: false
         };
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleError(error) {
@@ -28,16 +30,23 @@ class App extends React.Component {
     handleSuccess(data) {
         const index = this.getRandomElement(data);
         this.setState({
+            quotes: data,
             quoteText: data[index].quoteText,
             quoteAuthor: data[index].quoteAuthor
         });
     }
 
+    handleClick() {
+        const quotes = this.state.quotes;
+        this.setState({
+            quoteText: quotes[this.getRandomElement(quotes)].quoteText,
+            quoteAuthor: quotes[this.getRandomElement(quotes)].quoteAuthor
+        });
+    }
+
     componentWillMount() {
         const xhr = new XMLHttpRequest();
-
         xhr.responseType = 'json';
-
         xhr.addEventListener('load', () => {
             switch (xhr.status) {
                 case 200:
@@ -56,15 +65,12 @@ class App extends React.Component {
                     this.handleError('Произошла ошибка сервера: ' + xhr.status + ' ' + xhr.statusText);
             }
         });
-
         xhr.addEventListener('error', () => {
             this.handleError('Произошла ошибка соединения');
         });
-
         xhr.addEventListener('timeout', () => {
             this.handleError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
         });
-
         xhr.timeout = 10000; // 10 seconds
         xhr.open('GET', 'http://www.mocky.io/v2/5cbc08053200007b0680d7cb', true);
         xhr.send();
@@ -91,7 +97,7 @@ class App extends React.Component {
                                 />
                     })
                     }
-                    <button href="#" className="new-quote">New quote</button>
+                    <button href="#" className="new-quote" onClick={this.handleClick}>New quote</button>
                 </div>
             </main>
         );
@@ -106,10 +112,8 @@ App.propTypes = {
         iconName: PropTypes.string.isRequired
     }))
 };
-
 App.defaultProps = {
     text: 'Having nothing, nothing can he lose.',
     author: 'William Shakespeare'
 };
-
 export default App;
