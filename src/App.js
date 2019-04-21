@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Link from './components/Link';
 
 class App extends React.Component {
@@ -81,10 +81,10 @@ class App extends React.Component {
     render() {
         return (
             <main className="quote-box">
-                <div className="quote-text">
+                <ReactCSSTransitionGroup className="quote-text" component="div" transitionName="slide" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
                     <i className="fa fa-quote-left" aria-hidden="true"></i>
                     <span>{this.state.quoteText}</span>
-                </div>
+                </ReactCSSTransitionGroup>
                 <div className="quote-author">- {this.state.quoteAuthor}</div>
                 <div className="buttons">
                     {this.props.icons.map((icon) => {
