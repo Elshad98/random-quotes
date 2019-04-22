@@ -35,7 +35,7 @@ class App extends React.Component {
     }
     componentWillMount() {
         const xhr = new XMLHttpRequest();
-        const URL = 'http://www.mocky.io/v2/5cbc3d51320000d90c80d836';
+        const URL = 'https://www.mocky.io/v2/5cbc3d51320000d90c80d836';
         xhr.responseType = 'json';
         xhr.addEventListener('load', () => {
             switch (xhr.status) {
