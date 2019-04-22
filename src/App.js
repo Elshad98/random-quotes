@@ -6,7 +6,6 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            icons: this.props.icons,
             quotes: [],
             quoteText: this.props.text,
             quoteAuthor: this.props.author,
@@ -14,22 +13,18 @@ class App extends React.Component {
         };
         this.handleClick = this.handleClick.bind(this);
     }
-
     handleError(error) {
         console.error(error);
     }
-
     getRandom(array) {
         const randomElementIndex = Math.floor(Math.random() * array.length);
         return randomElementIndex;
     }
-
     handleSuccess(data) {
         this.setState({
             quotes: data
         });
     }
-
     handleClick() {
         const quotes = this.state.quotes;
         this.setState({
@@ -37,7 +32,6 @@ class App extends React.Component {
             quoteAuthor: quotes[this.getRandom(quotes)].quoteAuthor
         });
     }
-
     componentWillMount() {
         const xhr = new XMLHttpRequest();
         const URL = 'http://www.mocky.io/v2/5cbc3d51320000d90c80d836';
@@ -70,11 +64,6 @@ class App extends React.Component {
         xhr.open('GET', URL, true);
         xhr.send();
     }
-
-    componentDidMount() {
-
-    }
-
     render() {
         return (
             <main className="quote-box">
@@ -84,22 +73,20 @@ class App extends React.Component {
                 </div>
                 <div className="quote-author">- {this.state.quoteAuthor}</div>
                 <div className="buttons">
-                    {this.props.icons.map((icon) => (
+                    {this.props.icons.map(icon =>
                         <Link
-                                    key={icon.id}
-                                    id={icon.id}
-                                    href={icon.href}
-                                    className={icon.iconName}
-                                />
-                    ))
-                    }
+                            key={icon.id}
+                            id={icon.id}
+                            href={icon.href}
+                            className={icon.iconName}
+                        />)
+                     }
                     <button href="#" className="new-quote" onClick={this.handleClick}>New quote</button>
                 </div>
             </main>
         );
     }
 }
-
 App.propTypes = {
     text: PropTypes.string,
     author: PropTypes.string,
