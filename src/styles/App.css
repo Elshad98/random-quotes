@@ -2,15 +2,19 @@
 display: table;
 background: #fff;
 width: 500px;
-margin: 10% auto auto auto;
 padding: 40px 50px;
-border-radius: 5px;
+border-radius: 15px;
 -webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,0.25);
 box-shadow: 0 1px 5px 0 rgba(0,0,0,0.25);
+position: fixed;
+top: 40%;
+left: 50%;
+transform: translate(-50%, -50%);
 }
 .quote-text {
 font-weight: 500;
 font-size: 28px;
+line-height: 1.5em;
 text-align: center;
 }
 .quote-text .fa-quote-left {
