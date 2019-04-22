@@ -68,7 +68,7 @@ class App extends React.Component {
     render() {
         return (
             <main className="quote-box">
-                <QuoteText className="quote-text" quoteText={this.state.quoteText} icon="fa fa-quote-left" />
+                <QuoteText className="quote-text" quoteText={this.state.quoteText} icon="fa fa-quote-left"/>
                 <div className="quote-author">- {this.state.quoteAuthor}</div>
                 <div className="buttons">
                     {this.props.icons.map(icon =>

@@ -10,4 +10,10 @@ function QuoteText(props){
 	);
 }
 
+QuoteText.propTypes = {
+	quoteText: PropTypes.string.isRequired,
+	className: PropTypes.string.isRequired,
+	icon: PropTypes.string.isRequired
+};
+
 export default QuoteText;
