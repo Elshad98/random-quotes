@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
+
 import Link from './components/Link';
 import QuoteText from './components/QuoteText';
 
@@ -28,46 +29,33 @@ class App extends React.Component {
     }
     handleClick() {
         const quotes = this.state.quotes;
-        this.setState({
-            quoteText: quotes[this.getRandom(quotes)].quoteText,
-            quoteAuthor: quotes[this.getRandom(quotes)].quoteAuthor
-        });
+        if (quotes.length !== 0) {
+            this.setState({
+                quoteText: quotes[this.getRandom(quotes)].quoteText,
+                quoteAuthor: quotes[this.getRandom(quotes)].quoteAuthor
+            });
+        }
     }
-    componentWillMount() {
+    componentDidMount() {
         const xhr = new XMLHttpRequest();
         const URL = 'https://www.mocky.io/v2/5cbc3d51320000d90c80d836';
-        xhr.responseType = 'json';
-        xhr.addEventListener('load', () => {
-            switch (xhr.status) {
-                case 200:
-                    this.handleSuccess(xhr.response);
-                    break;
-                case 400:
-                    this.handleError('Произошла ошибка сервера: неверный запрос');
-                    break;
-                case 404:
-                    this.handleError('Произошла ошибка сервера: запрашиваемый ресурс не найден');
-                    break;
-                case 500:
-                    this.handleError('Произошла внутренняя ошибка сервера');
-                    break;
-                default:
-                    this.handleError(`Произошла ошибка сервера: ${xhr.status} ${xhr.statusText}`);
-            }
-        });
-        xhr.addEventListener('error', () => {
-            this.handleError('Произошла ошибка соединения');
-        });
-        xhr.addEventListener('timeout', () => {
-            this.handleError(`Запрос не успел выполниться за ${xhr.timeout} мс`);
-        });
-        xhr.timeout = 10000; // 10 seconds
         xhr.open('GET', URL, true);
         xhr.send();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== 4) {
+                return false
+            }
+            if (xhr.status !== 200) {
+                this.handleError(xhr.status + ': ' + xhr.statusText);
+            } else {
+                const data = JSON.parse(xhr.responseText);
+                this.handleSuccess(data);
+            }
+        };
     }
     render() {
         return (
-            <main className="quote-box">
+            <div className="quote-box">
                 <QuoteText className="quote-text" quoteText={this.state.quoteText} icon="fa fa-quote-left"/>
                 <div className="quote-author">- {this.state.quoteAuthor}</div>
                 <div className="buttons">
@@ -81,7 +69,7 @@ class App extends React.Component {
                      }
                     <button href="#" className="new-quote" onClick={this.handleClick}>New quote</button>
                 </div>
-            </main>
+            </div>
         );
     }
 }
