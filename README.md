@@ -1,7 +1,7 @@
 # Random quotes
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
-The main purpose of this application is to learn React.js.  
+The main purpose of this application is to learn React.js.   
 Check the demo: [https://elshad98.github.io/random-quotes](https://elshad98.github.io/random-quotes)  
 
 ## Instructions
